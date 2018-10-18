@@ -14,17 +14,23 @@ class Domain(TemplateView):
 	template_view = "alexaDomain.html"
 
 	def get(self, request, *args, **kwargs):
-		dictDomains={}
+		dictDomains=[]
 		page = urlopen('https://www.alexa.com/topsites').read()
 		soup = BeautifulSoup(page)
 		table= soup.findAll(class_="site-listing")
+		i=0
 		for row in table: 
+			i+=1
 			for link in row.findAll('a', href=True):
-				dictDomains[link.string]=link.get('href')
-		print(len(dictDomains.items()))
+				info={}
+				info['position']= i
+				info['name']= link.string
+				info['url']= link.get('href')
+				dictDomains.append(info)
+		print(len(dictDomains))
 		return render(
 			request, 
 			'alexaDomain.html', 
-			{'domains': dictDomains.items()},
+			{'domains': dictDomains},
 			)
 	
