@@ -1,5 +1,9 @@
-# Alexa's Domain [The top 50 on the web](https://www.alexa.com/topsites)
+# Alexa's Domains [The top 50 on the web](https://www.alexa.com/topsites)
 
+
+Small application that return the top 50 site on the web that works  extracting data from Alexa.com and show it. 
+
+Basic application who works with Django and BeautifulSoup.
 
 ## Requirements 
 Python >= 3.4.3
