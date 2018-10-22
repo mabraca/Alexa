@@ -24,7 +24,7 @@ Pip
 	```
 
 
-## etup database:
+## Setup database:
 
 1. Create 'alexa' database
 	```
