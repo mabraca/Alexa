@@ -8,7 +8,7 @@ class UserTestCase(TestCase):
     def setUp(self):
         self.regUser = User.objects.create( username = 'RegularTestCaseUser', password= '123456Prueba' )
         
-        self.staffUser = User.objects.create(username = 'SecondTestCaseUser', password = '123456P'     )
+        self.url = recentViews.objects.create(url="https://www.alexa.com/topsites")
         
     def test_integrity_on_create(self):
         try:
@@ -20,14 +20,22 @@ class UserTestCase(TestCase):
             self.fail('Integrity net boing checked propperly at User name')
         except IntegrityError:
             pass
+        try:
+            with transaction.atomic():
+                asd = recentViews.objects.create(
+                    url = self.url.url
+                )
+            self.fail('Integrity net boing checked propperly at url ')
+        except IntegrityError:
+            pass
             
         try:
             with transaction.atomic():
                 asd = User.objects.create(
                     username = 'NewUser',
-                    password= 'prueba'
+                    password = None
                 )
-            self.fail('Integrity net boing checked propperly at Password')
+            self.fail('Password could not be empty')
         except IntegrityError:
             pass
 

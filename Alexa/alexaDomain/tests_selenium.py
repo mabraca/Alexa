@@ -22,33 +22,35 @@ class AccountTestCase(LiveServerTestCase):
         username = selenium.find_element_by_id('id_username')
         password1 = selenium.find_element_by_id('id_password1')
         password2 = selenium.find_element_by_id('id_password2')
+        logout = selenium.find_element_by_id('logout')
 
         submit = selenium.find_element_by_name('register')
 
         #Fill the form with data
-        username.send_keys('Test1')
+        username.send_keys('Test2')
         password1.send_keys('123456Test')
         password2.send_keys('123456Test')
 
         #submitting the form
         submit.send_keys(Keys.RETURN)
 
-    def test_table(self):
+        #logout
+        logout = logout.click()
+
+    def test_table_and_login(self):
         selenium = self.selenium
         #Opening the link we want to test
-        selenium.get('http://127.0.0.1:8000/login')
+        selenium.get('http://127.0.0.1:8000/login/')
         assert "Alexa's Domains" in selenium.title
         #find the form element
         username = selenium.find_element_by_id('id_username')
         password = selenium.find_element_by_id('id_password')
 
-        username.send_keys('Test1')
+        username.send_keys('Test3')
         password.send_keys('123456Test')
 
         #submitting the form
         submit.send_keys(Keys.RETURN)
-
-        time.sleep(3)
 
         url = selenium.find_element_by_id('nameURL')
         submit = selenium.find_element_by_name('getInfo')
