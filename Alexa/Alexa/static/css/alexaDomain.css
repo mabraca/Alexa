@@ -79,6 +79,22 @@ body{
 	.container-fluid{
 		margin-bottom: 20px;
 	}
+	.recentViews{
+		font-size: 1.0em;
+		font-weight: bold;
+		overflow-x: auto;
+	}
+	@include media-breakpoint-up(sm) {
+	  .recentViews {
+	    font-size: 0.8rem;
+	  }
+	}
+
+	@include media-breakpoint-up(md) {
+	  .recentViews {
+	    font-size: 0.9rem;
+	 	}
+	}
 	@media screen  and (max-width: 1000px) {
 		  .go-down{ display: none; }
 		}

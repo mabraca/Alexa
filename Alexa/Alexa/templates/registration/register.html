@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="row dark-color">
+		<img class="img-fluid alexa-logo" src=" {% static 'img/alexa-logo.png' %} ">
+</div>
+
+<!-- Content -->
+<div class="row justify-content-center" style="padding-top: 50px">
+	<!-- Get the page -->
+	<div class="col-4"></div>
+	<div class="col-4 col-xs-12 align-self-center">
+	<form method="post">
+		{% if form.errors %}
+		    <div class="alert alert-danger alert-dismissible" role="alert">
+		        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <strong>ERROR.</strong> {{ form.errors }}{{ form.password.errors }} {{ form.password_confirmation.errors }}
+		    </div>
+	    {% endif %}
+		{% csrf_token %}
+		  <div class="form-group">
+		    <label for="user"><strong>Username (*): </strong></label>
+		    <input type="text" class="form-control" id="id_username" aria-describedby="userPerson" placeholder="Enter username" name="username" required >
+		    <small id="userPerson" class="form-text text-muted">
+				 Ex. AliasPepito
+		    </small>
+		  </div>
+		  <div class="form-group">
+		    <label for="password1"><strong>Password (*): </strong></label>
+		    <input type="password" class="form-control" id="id_password1" placeholder="Enter password" name="password1" >
+		  </div>
+		  <div class="form-group">
+		    <label for="password2"><strong>Password confirmation (*): </strong></label>
+		    <input type="password" class="form-control" id="id_password2" placeholder="Enter password" name="password2" >
+		  </div>
+		  <p class="col-xs-4"  align="right" style="color:red; font-size: 12px; font-weight:bold; padding-right: 0px "> (*) Required </p>
+		  <button type="submit" align="center" id="register" class="btn btn-secondary">Register</button>
+		  <button type="submit" id="register2" class="btn btn-secondary" align="right" ><a style="color:white;" href="/login/">Sign in</a></button>
+		  
+		</form>
+	</div>
+	<div class="col-4"></div>
+</div>
+
+{% endblock content %}

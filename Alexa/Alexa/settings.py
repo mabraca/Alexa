@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'Alexa.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'alexa',
+        'USER': 'alexa',
+        'PASSWORD': 'alexa',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -115,6 +119,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LOGIN_URL ='/login/'
+LOGIN_REDIRECT_URL='/'
 
 
 # Static files (CSS, JavaScript, Images)

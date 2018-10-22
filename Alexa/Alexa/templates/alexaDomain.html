@@ -2,14 +2,58 @@
 {% load staticfiles %}
 
 {% block content %}
-
-
 <div class="row dark-color">
 		<img class="img-fluid alexa-logo" src=" {% static 'img/alexa-logo.png' %} ">
 </div>
 
 <!-- Content -->
 <div class="row justify-content-center" style="padding-top: 50px">
+	{% if user.is_authenticated %}
+	<!-- Get the page -->
+	<div class="col-1"></div>
+	<div class="col-2" align="center">
+		<div class="col-6 align-self-center col-xs-12"  >
+			<button type="button" class="btn btn-secondary btn-lg my-2 " > <a href="/logout/" style="color:white"> <strong> Logout {{ user.username }}</strong></a></button>
+		</div>
+
+	</div>
+	<div class="col-1"></div>
+	<div class="col-4 col-xs-12 align-self-center">
+		<form method="post">
+		{% csrf_token %}
+		  <div class="form-group">
+		    <label for="nameURL"><strong>URL from Alexa top sites:</strong></label>
+		    <input type="text" class="form-control" id="nameURL" aria-describedby="urllHelp" placeholder="Enter url" name="nameURL" value="{{ nameURL }}">
+		    <small id="urlHelp" class="form-text text-muted">
+		    <ul>
+				    <li>  Ex. https://www.alexa.com/topsites/category/Top/Healths
+				    </li>
+				    <li>
+				    	Ex. https://www.alexa.com/topsites/
+				    </li>
+			    </ul>
+		    </small>
+		  </div>
+
+		  <button type="submit" id="getInfo" class="btn btn-secondary">Get information</button>
+		</form>
+	</div>
+	<div class="col-1"></div>
+	<div class="col-3 col-xs-12 recentViews ">
+		<p class="text-justify">Last 5 recent views:
+		{% if recents%}
+			{% for i in recents %}
+				</br>{{ i }}
+			{% endfor %}
+		{% else %}
+			</br>
+			Start now!
+		{% endif %}
+		</p>
+
+	</div>
+	
+
 	<!-- Left side -->
 	<div class="col-6" style="margin-top: 45px;margin-left: 15px;" >
   		<div class="go-down">
@@ -69,7 +113,6 @@
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-secondary">Go to site</button>
 				      </div>
 				    </div>
 				  </div>
@@ -80,5 +123,39 @@
 			</table>
 		</div>
 	</div>
+	{% else %}
+	<!-- Left side -->
+	<div class="col-3">
+		
+	</div>
+	<div class="col-6" style="margin-top: 45px;" >
+  		<div class="go-down">
+	  		<div class="row">
+	 			<div class="col title-orange" >
+	 				<p>Top 50 sites on the web</p>
+	 			</div>
+	 			<div class="col-6 title-icon">
+	 				<i style="font-size: 60px; padding-top: 20px;" class="fas fa-clipboard-list"></i>
+	 				
+	 			</div>
+	 		</div>
+ 		</div>
+ 		<div class="row justify-content-center" style="margin-left: 22%;">
+	 					
+			<div class="col-6 align-self-center col-xs-12" >
+ 			<button type="button" class="btn btn-secondary btn-lg" > <a style="color:white" href="/register/"> <strong> Sign up</strong></a></button>
+	 	</div>
+	 	<div class="col-6 align-self-center col-xs-12"  >
+			<button type="button" class="btn btn-secondary btn-lg my-2 " > <a href="/login/" style="color:white"> <strong> Sign in</strong></a></button>
+		</div>
+ 		</div>
+ 		<div class="row justify-content-center">
+ 			<strong style="padding-top: 20px">By</strong><img class="image-alexa" src="{% static 'img/alexa.PNG' %}">
+ 		</div>
+	</div>
+	<div class="col-3"></div>
+
+
+	{% endif%}
 </div>
 {% endblock content %}
